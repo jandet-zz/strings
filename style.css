@@ -1,0 +1,46 @@
+.string {
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.string:nth-of-type(1) {
+  background: red;
+  left: 10%;
+}
+
+.string:nth-of-type(2) {
+  background: orange;
+  left: 20%;
+}
+
+.string:nth-of-type(3) {
+  background: yellow;
+  left: 30%;
+}
+
+.string:nth-of-type(4) {
+  background: green;
+  left: 40%;
+}
+
+.string:nth-of-type(5) {
+  background: blue;
+  left: 50%;
+}
+
+.string:nth-of-type(6) {
+  background: purple;
+  left: 60%;
+}
+
+.string:nth-of-type(7) {
+  background: pink;
+  left: 70%;
+}
+
+.string:nth-of-type(8) {
+  background: gray;
+  left: 80%;
+}
