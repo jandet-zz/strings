@@ -1,6 +1,6 @@
 var touches = [];
-var stringLocations = $('.string').map(function(idx, el) {
-  return { x: $(el).offset().left, y: $(el).offset().top };
+var stringLocations = s('.string').map(function(el) {
+  return { x: el.offsetLeft, y: el.offsetTop };
 });
 
 var context = new (window.AudioContext || window.webkitAudioContext)();
@@ -17,7 +17,7 @@ function playNoteForIndex(index) {
   if (!frequencies[index]) {
     return;
   }
-  console.log('strum', index);
+  
   var oscillator = context.createOscillator();
   oscillator.type = 'triangle';
   oscillator.frequency.value = frequencies[index];
@@ -33,11 +33,9 @@ function playNoteForIndex(index) {
   };
 }
 
-$(document.body).on('touchmove', function(e) {
-  var changed = e.originalEvent.changedTouches;
-  for (var i = 0; i < changed.length; i ++) {
-    var touch = changed[i],
-        x = touch.pageX,
+window.addEventListener('touchmove', function(e) {
+  Array.prototype.forEach.call(e.changedTouches, function(touch) {
+    var x = touch.pageX,
         y = touch.pageY,
         identifier = touch.identifier;
 
@@ -54,7 +52,7 @@ $(document.body).on('touchmove', function(e) {
 
     var deltaX = x - lastTouch.pageX;
 
-    stringLocations.each(function(index, loc) {
+    stringLocations.forEach(function(loc, index) {
       if (Math.abs(x - loc.x) < 20) {
         loc.inRange = true;
       } else if (loc.inRange) {  
@@ -66,5 +64,9 @@ $(document.body).on('touchmove', function(e) {
     });
 
     touches[identifier] = copyTouch(touch);
-  };
+  });
 });
+
+function s(selector) {
+  return Array.prototype.slice.call(document.querySelectorAll(selector));
+}
