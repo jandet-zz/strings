@@ -54,6 +54,8 @@ function playNoteForIndex(index) {
     setTimeout(function() {
       source.stop(0);
     }, 1000);
+  }, function (err) {
+    console.log('error decoding audio file', err);
   });
 }
 window.addEventListener('touchmove', function(e) {
